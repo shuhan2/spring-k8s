@@ -1,6 +1,5 @@
 FROM adoptopenjdk/openjdk11
 VOLUME /tmp
-ARG JAR_FILE
-COPY ${JAR_FILE} app.jar
+COPY ./build/libs/spring-k8s-0.0.1-SNAPSHOT.jar app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
 EXPOSE 8080
