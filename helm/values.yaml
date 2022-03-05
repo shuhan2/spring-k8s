@@ -5,10 +5,14 @@
 replicaCount: 1
 
 image:
-  repository: nginx
-  pullPolicy: IfNotPresent
+  repository: docker.io/demo
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: 1
+#imageCredentials:
+#  registry: docker.io
+#  username: qianwu2
+#  password: WorkhardLoveDocker@9
 
 imagePullSecrets: []
 nameOverride: ""
