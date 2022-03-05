@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+  mongodb:
+    image: mongo:5.0
+
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo-data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_DATABASE=mongo-demo
+
+volumes:
+  mongo-data:

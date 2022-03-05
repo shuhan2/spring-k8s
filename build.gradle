@@ -18,6 +18,8 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'org.springframework.boot:spring-boot-starter-web:2.6.4'
     implementation 'org.springframework.boot:spring-boot-starter-actuator:2.6.4'
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb:2.6.4'
+
 }
 
 tasks.named('test') {
