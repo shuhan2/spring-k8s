@@ -2,8 +2,10 @@ package com.example.springk8s.domain;
 
 import org.springframework.data.redis.core.RedisHash;
 
+import java.io.Serializable;
+
 @RedisHash("Student")
-public class Student {
+public class Student implements Serializable {
 
     public enum Gender {
         MALE, FEMALE;
@@ -13,6 +15,9 @@ public class Student {
     private String id;
     private String name;
     private Gender gender;
+
+    public Student() {
+    }
 
     @Override
     public String toString() {
@@ -31,5 +36,37 @@ public class Student {
         this.name = name;
         this.gender = gender;
         this.grade = grade;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public void setGrade(int grade) {
+        this.grade = grade;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public int getGrade() {
+        return grade;
     }
 }
