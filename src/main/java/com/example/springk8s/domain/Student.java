@@ -1,10 +1,10 @@
 package com.example.springk8s.domain;
 
-import org.springframework.data.redis.core.RedisHash;
 
 import java.io.Serializable;
+import java.util.Objects;
 
-@RedisHash("Student")
+//@RedisHash("Student")
 public class Student implements Serializable {
 
     public enum Gender {
@@ -14,24 +14,24 @@ public class Student implements Serializable {
 
     private String id;
     private String name;
-    private Gender gender;
+    private String gender;
 
     public Student() {
     }
 
     @Override
     public String toString() {
-        return "Student{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", gender=" + gender +
-                ", grade=" + grade +
-                '}';
+        return "{" +
+                "\"id\": \"" + id + '\"' +
+                ", \"name\": \"" + name + '\"' +
+                ", \"gender\": \"" + gender + '\"' +
+                ", \"grade\": " + grade +
+                "}";
     }
 
     private int grade;
 
-    public Student(String id, String name, Gender gender, int grade) {
+    public Student(String id, String name, String gender, int grade) {
         this.id = id;
         this.name = name;
         this.gender = gender;
@@ -46,7 +46,7 @@ public class Student implements Serializable {
         this.name = name;
     }
 
-    public void setGender(Gender gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
@@ -62,11 +62,24 @@ public class Student implements Serializable {
         return name;
     }
 
-    public Gender getGender() {
+    public String getGender() {
         return gender;
     }
 
     public int getGrade() {
         return grade;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return grade == student.grade && Objects.equals(id, student.id) && Objects.equals(name, student.name) && gender == student.gender;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, gender, grade);
     }
 }
