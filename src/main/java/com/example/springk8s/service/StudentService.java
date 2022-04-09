@@ -1,6 +1,7 @@
 package com.example.springk8s.service;
 
 import com.example.springk8s.domain.Student;
+import com.example.springk8s.domain.other.Student1;
 import com.example.springk8s.persistence.StudentRedisRepository;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ public class StudentService {
         studentRedisRepository.save(id);
     }
 
-    public Object getStudent(String id) {
+    public Student1 getStudent(String id) {
 
         return studentRedisRepository.get(id);
     }

@@ -1,10 +1,13 @@
 package com.example.springk8s.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.io.Serializable;
 import java.util.Objects;
 
 //@RedisHash("Student")
+@JsonIgnoreProperties("@class")
 public class Student implements Serializable {
 
     public enum Gender {

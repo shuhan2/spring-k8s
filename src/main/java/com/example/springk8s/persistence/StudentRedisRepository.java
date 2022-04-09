@@ -1,6 +1,7 @@
 package com.example.springk8s.persistence;
 
 import com.example.springk8s.domain.Student;
+import com.example.springk8s.domain.other.Student1;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -23,7 +24,7 @@ public class StudentRedisRepository {
         redisObjectTemplate.opsForValue().set("student:object:" + id,  sincere);
     }
 
-    public Object get(String id) {
+    public Student1 get(String id) {
         String s = get1(id);
 //        ObjectMapper objectMapper = new ObjectMapper();
 //        try {
@@ -31,7 +32,7 @@ public class StudentRedisRepository {
 //        } catch (JsonProcessingException e) {
 //            e.printStackTrace();
 //        }
-        return  redisObjectTemplate.opsForValue().get("student:" +id);
+        return (Student1) redisObjectTemplate.opsForValue().get("student:" +id);
     }
 
     public String get1(String id) {

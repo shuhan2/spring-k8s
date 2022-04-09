@@ -1,6 +1,7 @@
 package com.example.springk8s.config;
 
 import com.example.springk8s.domain.Student;
+import com.example.springk8s.domain.other.Student1;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -29,7 +30,7 @@ public class RedisConfiguration extends CachingConfigurerSupport {
     public RedisTemplate<String, Object> redisObjectTemplate(RedisConnectionFactory jedisConnectionFactory) {
         RedisTemplate<String, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(jedisConnectionFactory);
-        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
+        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Student1.class);
         ObjectMapper om = new ObjectMapper();
         om.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
 //        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
