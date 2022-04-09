@@ -1,6 +1,14 @@
 version: '3.9'
 
 services:
+  redis:
+    image: redis:5.0.0
+    container_name: spring-redis
+    command: redis-server
+    volumes:
+      - redis-data:/data/redis
+    ports:
+      - "6379:6379"
   mongodb:
     image: mongo:5.0
 
@@ -13,3 +21,4 @@ services:
 
 volumes:
   mongo-data:
+  redis-data:

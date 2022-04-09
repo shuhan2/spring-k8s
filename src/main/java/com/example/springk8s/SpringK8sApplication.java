@@ -5,10 +5,12 @@ import com.example.springk8s.persistence.TeacherRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @SpringBootApplication
 @EnableMongoRepositories
+@EnableCaching
 public class SpringK8sApplication implements CommandLineRunner {
   private final TeacherRepository teacherRepository;
 
