@@ -14,7 +14,7 @@ public class Student implements Serializable {
 
     private String id;
     private String name;
-    private String gender;
+    private Gender gender;
 
     public Student() {
     }
@@ -24,14 +24,14 @@ public class Student implements Serializable {
         return "{" +
                 "\"id\": \"" + id + '\"' +
                 ", \"name\": \"" + name + '\"' +
-                ", \"gender\": \"" + gender + '\"' +
+                ", \"gender\": \"" + gender.name() + '\"' +
                 ", \"grade\": " + grade +
                 "}";
     }
 
     private int grade;
 
-    public Student(String id, String name, String gender, int grade) {
+    public Student(String id, String name, Gender gender, int grade) {
         this.id = id;
         this.name = name;
         this.gender = gender;
@@ -46,7 +46,7 @@ public class Student implements Serializable {
         this.name = name;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 
@@ -62,7 +62,7 @@ public class Student implements Serializable {
         return name;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
@@ -70,16 +70,16 @@ public class Student implements Serializable {
         return grade;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Student student = (Student) o;
-        return grade == student.grade && Objects.equals(id, student.id) && Objects.equals(name, student.name) && gender == student.gender;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, gender, grade);
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Student student = (Student) o;
+//        return grade == student.grade && Objects.equals(id, student.id) && Objects.equals(name, student.name) && gender == student.gender;
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(id, name, gender, grade);
+//    }
 }

@@ -18,7 +18,7 @@ public class StudentRedisRepository {
     }
 
     public void save(String id) {
-        Student sincere = new Student(id, "sincere", "male", 29);
+        Student sincere = new Student(id, "sincere", Student.Gender.MALE, 29);
         redisTemplate.opsForValue().set("student:" + id,  sincere.toString());
         redisObjectTemplate.opsForValue().set("student:object:" + id,  sincere);
     }
