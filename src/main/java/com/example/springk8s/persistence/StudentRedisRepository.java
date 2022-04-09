@@ -10,9 +10,9 @@ import org.springframework.stereotype.Repository;
 public class StudentRedisRepository {
 
     private final RedisTemplate<String, String> redisTemplate;
-    private final RedisTemplate<String, Student> redisObjectTemplate;
+    private final RedisTemplate<String, Object> redisObjectTemplate;
 
-    public StudentRedisRepository(RedisTemplate<String, String> redisTemplate, RedisTemplate<String, Student> redisObjectTemplate) {
+    public StudentRedisRepository(RedisTemplate<String, String> redisTemplate, RedisTemplate<String, Object> redisObjectTemplate) {
         this.redisTemplate = redisTemplate;
         this.redisObjectTemplate = redisObjectTemplate;
     }
@@ -25,12 +25,12 @@ public class StudentRedisRepository {
 
     public Object get(String id) {
         String s = get1(id);
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-           return objectMapper.readValue(s, Student.class);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        try {
+//           return objectMapper.readValue(s, Student.class);
+//        } catch (JsonProcessingException e) {
+//            e.printStackTrace();
+//        }
         return  redisObjectTemplate.opsForValue().get("student:" +id);
     }
 

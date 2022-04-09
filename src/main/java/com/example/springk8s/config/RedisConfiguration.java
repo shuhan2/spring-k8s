@@ -26,8 +26,8 @@ public class RedisConfiguration extends CachingConfigurerSupport {
 
 
     @Bean
-    public RedisTemplate<String, Student> redisObjectTemplate(RedisConnectionFactory jedisConnectionFactory) {
-        RedisTemplate<String, Student> template = new RedisTemplate<>();
+    public RedisTemplate<String, Object> redisObjectTemplate(RedisConnectionFactory jedisConnectionFactory) {
+        RedisTemplate<String, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(jedisConnectionFactory);
         Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
         ObjectMapper om = new ObjectMapper();
@@ -47,7 +47,7 @@ public class RedisConfiguration extends CachingConfigurerSupport {
     }
 
     @Bean
-    public RedisCacheManager redisCacheManager(RedisTemplate<String, Student> redisObjectTemplate){
+    public RedisCacheManager redisCacheManager(RedisTemplate<String, Object> redisObjectTemplate){
         RedisCacheWriter redisCacheWriter = RedisCacheWriter.nonLockingRedisCacheWriter(redisObjectTemplate.getConnectionFactory());
         RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig().serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(redisObjectTemplate.getValueSerializer()));
         return new RedisCacheManager(redisCacheWriter, redisCacheConfiguration);
