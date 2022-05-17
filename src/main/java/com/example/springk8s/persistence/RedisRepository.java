@@ -9,9 +9,14 @@ import java.util.Optional;
 
 @Repository
 public class RedisRepository {
+    private final StudentRedisRepository studentRedisRepository;
 
-    @Cacheable(cacheNames = "student" )
-    public Optional<Student1> findById(String id) {
-        return Optional.of(new Student1("2", "man", Student.Gender.FEMALE, 28));
+    public RedisRepository(StudentRedisRepository studentRedisRepository) {
+        this.studentRedisRepository = studentRedisRepository;
+    }
+
+    @Cacheable(cacheNames = "student", key = "#id")
+    public Optional<Student>   findById(String id) {
+        return Optional.of(studentRedisRepository.getStudent(id));
     }
 }

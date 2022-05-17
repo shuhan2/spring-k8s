@@ -1,6 +1,5 @@
 package com.example.springk8s.config;
 
-import com.example.springk8s.domain.Student;
 import com.example.springk8s.domain.other.Student1;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
@@ -8,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
+import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
@@ -19,6 +19,9 @@ import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSeriali
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 @Configuration
@@ -53,4 +56,15 @@ public class RedisConfiguration extends CachingConfigurerSupport {
         RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig().serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(redisObjectTemplate.getValueSerializer()));
         return new RedisCacheManager(redisCacheWriter, redisCacheConfiguration);
     }
+
+//    @Bean
+//    public KeyGenerator keyGenerator() {
+//        return (target, method, params) -> generate(params);
+//    }
+//
+//    private String generate(Object...params) {
+//        return Stream.of(Stream.ofNullable(params).findFirst().orElse(new Object[]{})).
+//                map(String::valueOf)
+//                .collect(Collectors.joining(":"));
+//    }
 }

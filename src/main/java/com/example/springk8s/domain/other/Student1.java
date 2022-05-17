@@ -1,8 +1,12 @@
 package com.example.springk8s.domain.other;
 
 import com.example.springk8s.domain.Student;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-public class Student1 {
+import java.io.Serializable;
+
+@JsonIgnoreProperties("@class")
+public class Student1 implements Serializable {
     public enum Gender {
         MALE, FEMALE;
 
